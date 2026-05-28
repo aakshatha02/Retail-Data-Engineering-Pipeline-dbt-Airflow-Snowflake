@@ -2,44 +2,64 @@
 
 ## Project Overview
 
-This project builds an end-to-end retail data engineering pipeline using a modern analytics stack. It demonstrates how raw retail transaction data can be ingested, orchestrated, transformed, and made analytics-ready using tools commonly used in production data platforms. The pipeline is designed around a retail dataset sourced from Kaggle ([Kaggle Retail Dataset](https://www.kaggle.com/datasets/matteo2002/retail-dataset?resource=download&select=purchases.csv)) and focuses on simulating a real-world analytics workflow where data moves through multiple layers of processing before reaching a final analytical state.
+This project is an end-to-end retail data pipeline built using a modern analytics stack. It takes raw retail transaction data from Kaggle and moves it through ingestion, orchestration, transformation, and finally into an analytics-ready warehouse.
 
-The system is structured to reflect a typical cloud data warehouse architecture where orchestration, transformation, and storage are separated into modular components, enabling scalability and maintainability.
+The goal is to simulate a real-world data platform where raw data is progressively cleaned, transformed, and structured for analysis using tools commonly found in production environments.
 
 ## Architecture
 
-The pipeline follows a layered architecture that begins with raw retail data ingestion and progresses through transformation and modeling stages before reaching analytical storage. Airflow is used to orchestrate the entire workflow, ensuring that each stage of the pipeline executes in the correct order and with proper dependencies. Once data is ingested, dbt is used to structure transformations into modular, testable SQL models that progressively clean and reshape the data into analytics-ready tables. The transformed data is then loaded into Snowflake, which serves as the primary cloud data warehouse for querying and analysis. Databricks is incorporated as an additional processing environment to explore distributed computation and potential advanced analytics workflows.
+The pipeline follows a layered architecture that mirrors how modern data platforms are typically designed.
 
-This architecture is designed to reflect real-world data platform design where orchestration, transformation, and storage are decoupled to improve scalability and maintainability.
+Airflow orchestrates the entire workflow, ensuring each step runs in the correct order. Raw data is first ingested, then transformed using dbt into structured, testable SQL models. These models progressively clean and reshape the data into meaningful datasets.
+
+Snowflake acts as the central data warehouse where the final transformed data is stored and queried. Databricks is included as an additional processing layer to explore distributed compute and potential extensions like advanced analytics or machine learning workflows.
+
+Overall, the design separates orchestration, transformation, and storage to keep the system modular and scalable.
 
 ## Tech Stack
 
-This project uses Apache Airflow for workflow orchestration, dbt for transformation logic and data modeling, Snowflake as the cloud data warehouse, and Databricks as a distributed data processing environment. Python is used for scripting and integration, while SQL forms the core language for data transformations. GitHub is used for version control and project management, with the repository hosted at GitHub Repository.
+Apache Airflow is used for orchestration, dbt for data modeling and transformations, Snowflake for cloud data warehousing, and Databricks for distributed processing. Python handles scripting and integration tasks, while SQL drives most of the transformation logic. GitHub is used for version control and project organization.
 
 ## Dataset
 
-The dataset used in this project is a retail transactions dataset sourced from Kaggle. It contains purchase-level data that simulates real-world retail operations, including transactional information that can be used for building customer-level and product-level analytics. This dataset is used as the foundation for building staging models, transformation logic, and analytical outputs within the pipeline.
+The dataset is sourced from Kaggle and represents retail transaction data at the purchase level. It includes enough detail to model customer behavior, product performance, and sales trends, making it a solid foundation for building staging, transformation, and analytics layers.
+
+Dataset link: https://www.kaggle.com/datasets/matteo2002/retail-dataset
 
 ## dbt Transformations
 
-dbt is used to structure the transformation layer into modular models that progressively refine raw data into analytics-ready tables. The transformation design follows a layered approach where raw data is first standardized in staging models, then enriched and joined in intermediate models, and finally aggregated into business-ready models such as sales summaries or customer behavior views. This structure ensures clarity, reusability, and testability of transformation logic while maintaining a clean separation between raw ingestion and business logic.
+dbt is used to structure all transformations into a layered model.
+
+Raw data is first standardized in staging models, then enriched through intermediate transformations, and finally aggregated into business-focused tables such as sales summaries and customer-level insights. This approach keeps the logic clean, reusable, and easy to test.
 
 ## Airflow Orchestration
 
-Airflow is responsible for orchestrating the entire pipeline and ensuring that each stage executes in the correct sequence. The workflow is designed as a directed acyclic graph where ingestion, transformation, and loading tasks are connected through dependencies. This allows the pipeline to be scheduled, monitored, and retried in case of failures, making the system more robust and production-like.
+Airflow manages the entire pipeline as a directed acyclic graph (DAG), coordinating ingestion, transformation, and loading tasks.
+
+Each stage depends on the previous one, ensuring the pipeline runs in a controlled and predictable way. It also enables scheduling, monitoring, and retries, making the workflow production-like in behavior.
 
 ## Snowflake and Databricks Integration
 
-Snowflake is used as the primary data warehouse where transformed datasets are stored and queried for analytical purposes. It provides a scalable and structured environment for running SQL-based analytics on processed retail data. Databricks is included as an additional compute layer to explore distributed processing capabilities and potential future extensions such as advanced analytics, machine learning workflows, or large-scale data transformations.
+Snowflake serves as the main analytics warehouse where processed data is stored and queried efficiently.
+
+Databricks complements this by providing a distributed compute environment, useful for heavier processing tasks and future extensions such as machine learning workflows and advanced analytics.
 
 ## Project Structure
 
-The repository is organized to separate orchestration, transformation, and configuration logic into distinct components. Airflow DAG definitions manage workflow execution, dbt models define transformation logic, and configuration files handle connections to Snowflake and Databricks. This structure is designed to reflect a modular data engineering project where each tool has a clearly defined responsibility within the pipeline.
+The repository is organized by responsibility:
+
+- Airflow handles orchestration logic  
+- dbt contains all transformation models  
+- Configuration files manage connections to Snowflake and Databricks  
+
+This separation keeps the project modular and easy to extend without impacting other components.
 
 ## Project Status and Future Work
 
-This project is currently in active development. The core pipeline structure and tool integrations are being built, with ongoing work focused on improving orchestration stability, expanding dbt models, and refining data loading into Snowflake and Databricks. Future improvements include adding data quality checks within dbt, implementing incremental loading strategies, improving observability within Airflow, and potentially integrating dashboarding tools for visualization of retail analytics outputs.
+The project is currently in development. The core pipeline is in place, with ongoing improvements focused on stability, dbt model expansion, and refined data loading into Snowflake and Databricks.
+
+Future improvements include adding data quality checks in dbt, implementing incremental models, improving Airflow observability, and adding a BI layer for dashboards and reporting.
 
 ## Learning Outcomes
 
-This project demonstrates practical experience in building a modern data engineering pipeline using industry-standard tools. It explores how orchestration, transformation, and warehousing layers interact in a cloud-based architecture and provides hands-on experience with workflow scheduling, modular SQL transformations, and scalable data storage systems.
+This project demonstrates how modern data engineering systems are built in practice. It combines orchestration, transformation, and warehousing into a single pipeline and provides hands-on experience with tools used in real-world data platforms.
