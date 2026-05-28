@@ -22,7 +22,7 @@ Apache Airflow is used for orchestration, dbt for data modeling and transformati
 
 ## Dataset
 
-The dataset is sourced from Kaggle and represents retail transaction data at the purchase level. It includes enough detail to model customer behavior, product performance, and sales trends, making it a solid foundation for building staging, transformation, and analytics layers.
+The dataset used in this project is sourced from Kaggle and represents retail transaction data at the purchase level. It contains 436,689 records of commercial transactions from a retail store/marketplace, collected between December 2014 and December 2015. Each row corresponds to a single product purchased within an invoice, making it well-suited for building customer, product, and sales analytics.
 
 Dataset link: https://www.kaggle.com/datasets/matteo2002/retail-dataset
 
