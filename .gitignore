@@ -1,0 +1,14 @@
+# Ignore environment variables and secrets
+.env
+
+# Ignore OS generated files
+.DS_Store
+
+# Ignore python cache
+__pycache__/
+*.pyc
+
+important.md
+
+# Ignore Airflow logs
+logs/
