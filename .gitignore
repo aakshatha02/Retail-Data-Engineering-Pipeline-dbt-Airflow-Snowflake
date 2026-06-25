@@ -12,3 +12,6 @@ important.md
 
 # Ignore Airflow logs
 logs/
+
+echo "__pycache__/" >> .gitignore
+echo "*.pyc" >> .gitignore
