@@ -9,7 +9,6 @@ def download_dataset():
     os.makedirs(output_path, exist_ok=True)
 
     # Defer imports to inside the callable so Airflow webserver doesn't crash 
-    # if kaggle isn't fully installed during the initial DAG parsing.
     from kaggle.api.kaggle_api_extended import KaggleApi
 
     api = KaggleApi()
