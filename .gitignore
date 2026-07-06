@@ -15,3 +15,8 @@ logs/
 
 echo "__pycache__/" >> .gitignore
 echo "*.pyc" >> .gitignore
+
+dbt/target/
+dbt/logs/
+
+test.ipynb
